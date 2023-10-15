@@ -1,0 +1,58 @@
+﻿GovPlus_oa_select_head_of_gov = {
+    effect = {
+        if = {
+            limit = {
+                GovPlus_st_is_constitutional_monarchy = yes
+            }
+            if = {
+                limit = {
+                    has_law = law_type:law_single_party_state
+                    has_law = law_type:law_presidential_republic
+                }
+                # TODO
+            }
+            else = {
+                
+            }
+        }
+    }
+}
+
+# Root = Country
+on_government_reformed = {
+	on_actions = {
+    
+    }
+}
+
+# Root = Country
+on_election_campaign_end = {
+	on_actions = {
+    
+    }
+}
+
+# Root = Interest Group
+on_ig_resigned_government = {
+	on_actions = {
+    
+    }
+}
+
+# Root owner Country of the Law
+# executed when the law is activated for any reason. It's usually because it
+# has been enacted, but script can activate laws directly without going through
+# the enactment process. Normally, it's immediately preceded by
+# on_law_enactment_ended, but if a law is directly set by script, thus
+# bypassing the enactment process, this will execute while
+# on_law_enactment_ended will not
+#
+# NOTE: unlike the other on_law_<something> on-actions, at the point in time
+# when this is triggered the law that was enacted is no longer considered being
+# enacted. Therefore using the `currently_enacting_law` link will return the
+# null law
+on_law_activated = {
+    on_actions = {
+    
+    }
+}

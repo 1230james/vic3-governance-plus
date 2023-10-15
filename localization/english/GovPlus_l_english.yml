@@ -1,4 +1,19 @@
 ﻿l_english:
+    # GUI Text
+    GovPlus_gui_monarch_name_and_title: "#title [Character.GetPrimaryRoleTitle]#! #bold [Character.GetFullNameNoFormatting]#!"
+    GovPlus_gui_new_prime_minister:     "New $GovPlus_title_parl_mon$!"
+    
+    # Titles
+    GovPlus_title_pres_mon:        "[Country.GetCustom('GovPlus_cl_premier_title')]"
+    GovPlus_title_parl_mon:        "[Country.GetCustom('GovPlus_cl_prime_minister_title')]"
+    GovPlus_title_pres_mon_char:   "[Character.GetCountry.GetCustom('GovPlus_cl_premier_title')]"
+    GovPlus_title_parl_mon_char:   "[Character.GetCountry.GetCustom('GovPlus_cl_prime_minister_title')]"
+    GovPlus_title_pres_mon_player: "[GetPlayer.GetCustom('GovPlus_cl_premier_title')]"
+    GovPlus_title_parl_mon_player: "[GetPlayer.GetCustom('GovPlus_cl_prime_minister_title')]"
+    
+    GovPlus_premier:        "$RULER_PREMIER$"
+    GovPlus_prime_minister: "Prime Minister"
+    
     # Law Groups
     GovPlus_lawgroup_political_franchise:      "Voting Franchise"
     GovPlus_lawgroup_political_franchise_desc: "Determines if elections are held and who is granted the right to vote."
@@ -10,6 +25,15 @@
     GovPlus_law_council_system_desc: "A political system where workers elect delegates to local councils, who in turn elect delegates to increasingly higher councils. Extends concepts of workplace organization to general governance."
     GovPlus_law_no_voting:           "No Voting"
     GovPlus_law_no_voting_desc:      "Nobody is given votes, and positions of power are inherited or appointed rather than elected."
+    
+    # Concepts
+    concept_GovPlus_head_of_gov:      "Head of Government"
+    concept_GovPlus_head_of_gov_desc: "In some [Concept('concept_government_type', '$concept_government_types$')], the [concept_head_of_state] is not the #italic de facto#! leader of the [Concept('concept_country','$concept_country_possessive$')] [concept_government], and instead, that role belongs to a different [concept_character]. Such a character does not share the same influence as the [concept_head_of_state], but rather serves as an indicator of which [concept_party] or [concept_interest_group] holds the most [concept_clout] [Concept('concept_in_government', 'within government')].$GovPlus_head_of_gov_conmon_desc$"
+    GovPlus_head_of_gov_conmon_desc:  "[AddLocalizationIf(GetScriptedGui('GovPlus_sg_is_parl_mon').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), 'GovPlus_parl_mon_desc')][AddLocalizationIf(GetScriptedGui('GovPlus_sg_is_pres_mon').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End), 'GovPlus_pres_mon_desc')]"
+    
+    GovPlus_parl_mon_desc: "\n\nUnder a [GetPlayer.GetGovernment.GetName] with the [GetPlayer.GetActiveLawFromGroup('lawgroup_distribution_of_power').GetLawType.GetName], the [concept_government] is led by a $GovPlus_title_parl_mon_player$, who is typically the [concept_leader] of the [concept_interest_group] in [concept_government_type] with the most [concept_clout]."
+    
+    GovPlus_pres_mon_desc: "\n\nUnder a [GetPlayer.GetGovernment.GetName] with the [GetPlayer.GetActiveLawFromGroup('lawgroup_distribution_of_power').GetLawType.GetName], the [concept_government] is led by a $GovPlus_title_pres_mon_player$, who is typically the [concept_leader] of the [concept_interest_group] with the most [concept_clout] at the end of each [concept_election]."
     
     # Government Types
     GovPlus_gov_technate_dictator:      "$gov_technate_presidential$"

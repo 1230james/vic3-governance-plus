@@ -1,3 +1,12 @@
 ﻿l_english:
+    # Laws
     law_presidential_republic:  "Presidential System"
     law_parliamentary_republic: "Parliamentary System"
+    
+    # Subtitles - GovPlus-prefixed strings aren't replacements, but rather just placed here for convenience
+    GovPlus_CHARACTER_PANEL_RULER:   "[Concept('concept_ruler', Character.GetPrimaryRoleTitle)] of [Character.GetCountry.GetName]"
+    GovPlus_CHARACTER_PANEL_PREMIER: "[Concept('concept_GovPlus_head_of_gov', Character.GetCustom('GovPlus_cl_head_of_gov_title_character'))] of [Character.GetCountry.GetName]"
+    GovPlus_CHARACTER_PANEL_OTHER:   "[Character.GetPrimaryRoleName] in [Character.GetCountry.GetName]"
+    
+    CHARACTER_PANEL_SUBTITLE_OTHER: "[SelectLocalization(Character.IsRuler, 'GovPlus_CHARACTER_PANEL_RULER', 'GovPlus_CHAR_PNL_SUB_OTHER_2')]"
+    GovPlus_CHAR_PNL_SUB_OTHER_2:   "[SelectLocalization(GetScriptedGui('GovPlus_sg_is_head_of_gov').IsShown(GuiScope.SetRoot(Character.MakeScope).End), 'GovPlus_CHARACTER_PANEL_PREMIER', 'GovPlus_CHARACTER_PANEL_OTHER')]"
