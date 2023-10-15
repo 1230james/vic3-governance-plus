@@ -1,0 +1,218 @@
+﻿namespace = french_pretenders
+
+french_pretenders.5 = { # Startup event
+	type = country_event
+	placement = ROOT
+
+	title = french_pretenders.5.t
+	desc = french_pretenders.5.d
+	flavor = french_pretenders.5.f
+
+	gui_window = event_window_1char_tabloid
+
+	left_icon = scope:french_monarch
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/2Characters"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	duration = 3
+
+	dlc = dlc004
+
+	cooldown = { months = normal_modifier_time }
+
+	trigger = {
+		NOT = { has_variable = french_pretender_startup_var }
+	}
+	immediate = {
+		set_variable = french_pretender_startup_var
+		ruler = {
+			save_scope_as = french_monarch
+		}
+		random_scope_character = {
+			limit = {
+				has_ideology = ideology:ideology_bonapartist
+			}
+			save_scope_as = bonapartist_character
+		}
+		random_scope_character = {
+			limit = {
+				has_ideology = ideology:ideology_orleanist
+			}
+			save_scope_as = orleanist_character
+		}
+		random_scope_character = {
+			limit = {
+				has_ideology = ideology:ideology_legitimist
+			}
+			save_scope_as = legitimist_character
+		}
+		root = {
+			save_scope_as = reflexive_reference_france
+		}
+	}
+	option = { # Support Bonapartism
+		name = french_pretenders.5.a
+		set_variable = chose_initial_french_dynasty
+		custom_tooltip = {
+			text = supporting_bonapartist_tt
+		}
+		if = {
+			limit = {
+				has_variable = supporting_orleanist_var
+			}
+			remove_variable = supporting_orleanist_var
+		}
+		if = {
+			limit = {
+				has_variable = supporting_legitimist_var
+			}
+			remove_variable = supporting_legitimist_var
+		}
+		custom_tooltip = {
+			text = bonapartist_progress_increase_10_tt
+			change_variable = { name = bonapartist_progress add = 10 }
+		}
+		set_variable = supporting_bonapartist_var
+	}
+	option = { # Support Orleanists
+		name = french_pretenders.5.b
+		default_option = yes
+		set_variable = chose_initial_french_dynasty
+		custom_tooltip = {
+			text = supporting_orleanism_tt
+		}
+		if = {
+			limit = {
+				has_variable = supporting_bonapartist_var
+			}
+			remove_variable = supporting_bonapartist_var
+		}
+		if = {
+			limit = {
+				has_variable = supporting_legitimist_var
+			}
+			remove_variable = supporting_legitimist_var
+		}
+		custom_tooltip = {
+			text = orleanist_progress_increase_10_tt
+			change_variable = { name = orleanist_progress add = 10 }
+		}
+		set_variable = supporting_orleanist_var
+	}
+	option = { # Support Legitimists
+		name = french_pretenders.5.c
+		set_variable = chose_initial_french_dynasty
+		custom_tooltip = {
+			text = supporting_legitimists_tt
+		}
+		if = {
+			limit = {
+				has_variable = supporting_bonapartist_var
+			}
+			remove_variable = supporting_bonapartist_var
+		}
+		if = {
+			limit = {
+				has_variable = supporting_orleanist_var
+			}
+			remove_variable = supporting_orleanist_var
+		}
+		custom_tooltip = {
+			text = legitimist_progress_increase_10_tt
+			change_variable = { name = legitimist_progress add = 10 }
+		}
+		set_variable = supporting_legitimist_var
+	}
+	option = {
+		name = french_pretenders.5.d1
+		set_variable = chose_initial_french_dynasty
+		random_interest_group = {
+			limit = {
+				is_marginal = no
+				law_stance = {
+					law = law_type:GovPlus_law_republic # law_type:law_presidential_republic
+					value > neutral
+				}
+			}
+			add_modifier = {
+				name = fra_republican_sentiment
+				months = normal_modifier_time
+			}
+		}
+		add_radicals = {
+			value = medium_radicals
+			strata = poor
+		}
+	}
+}
+
+french_pretenders.6 = { # Second Republic
+	type = country_event
+	placement = ROOT
+
+	title = french_pretenders.6.t
+	desc = french_pretenders.6.d
+	flavor = french_pretenders.6.f
+
+	event_image = {
+		video = "votp_realist_household"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	duration = 3
+
+	dlc = dlc004
+
+	cooldown = { months = normal_modifier_time }
+
+	trigger = {
+		# Triggered by JE
+	}
+	immediate = {
+		ruler = {
+			save_scope_as = old_ruler_scope
+			exile_character_with_martyrdom = yes
+		}
+		activate_law = law_type:GovPlus_law_republic
+        activate_law = law_type:law_presidential_republic
+		if = {
+			limit = {
+				has_law = law_type:law_hereditary_bureaucrats
+			}
+			activate_law = law_type:law_appointed_bureaucrats
+		}
+	}
+	option = {
+		name = french_pretenders.6.a
+		default_option = yes
+		custom_tooltip = {
+			text = exile_old_ruler_tt
+		}
+		random_interest_group = {
+			limit = {
+				is_marginal = no
+				law_stance = {
+					law = law_type:GovPlus_law_republic # law_type:law_presidential_republic
+					value > neutral
+				}
+			}
+			leader = {
+				set_character_as_ruler = yes
+			}
+		}
+		if = {
+			limit = {
+				country_has_voting_franchise = yes
+			}
+			call_election = {
+				months = 6
+			}
+		}
+	}
+}

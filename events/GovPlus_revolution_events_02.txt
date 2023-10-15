@@ -1,0 +1,131 @@
+﻿namespace = revolution_pulse_events
+
+revolution_pulse_events.10 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	title = revolution_pulse_events.10.t
+	desc = revolution_pulse_events.10.d
+	flavor = revolution_pulse_events.10.f
+
+	category = revolution
+
+	event_image = {
+		video = "unspecific_ruler_speaking_to_people"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	cooldown = { months = normal_modifier_time }
+
+	trigger = {
+		OR = {
+			socialist_revolution_ongoing = yes
+			liberal_revolution_ongoing = yes
+		}
+		OR = {
+			has_law = law_type:law_monarchy
+			has_law = law_type:law_autocracy
+			has_law = law_type:law_oligarchy
+			has_law = law_type:law_single_party_state
+		}
+		revolution_progress_high = yes
+		any_political_movement = {
+			is_revolutionary_movement = yes
+			OR = {
+				is_political_movement_type = movement_to_enact
+				is_political_movement_type = movement_to_restore
+			}
+			NOR = {
+				desired_law = law_type:law_chiefdom
+				desired_law = law_type:law_monarchy
+				# desired_law = law_type:law_presidential_republic
+				# desired_law = law_type:law_parliamentary_republic
+                desired_law = law_type:GovPlus_law_republic
+				desired_law = law_type:law_theocracy
+				desired_law = law_type:law_council_republic
+			}
+		}
+	}
+
+	cancellation_trigger = {
+		NOR = { 
+			socialist_revolution_ongoing = yes 
+			liberal_revolution_ongoing = yes
+		}
+	}
+	
+	immediate = {
+		save_revolution_scopes = yes
+		ruler = {
+			save_scope_as = reforms_at_gunpoint_ruler
+		}
+		random_interest_group = {
+			limit = {				
+				is_in_government = yes
+			}
+			save_scope_as = reforms_at_gunpoint_ig
+		}
+		scope:ongoing_revolution_movement = { #Can't trigger if they want governance reforms anyway.
+			this.desired_law = {
+				save_scope_as = revolutionaries_law
+			}
+		}
+	}
+	
+	option = {
+		name = revolution_pulse_events.10.a 
+		scope:ongoing_revolution = {
+			add_civil_war_progress = revolution_retreat_very_large
+		}
+		default_option = yes
+		ROOT = {
+			activate_law = scope:revolutionaries_law
+		}
+		add_loyalists = {
+			value = medium_radicals
+		}
+	}
+
+	option = {
+		name = revolution_pulse_events.10.b
+		scope:ongoing_revolution = {
+			add_civil_war_progress = revolution_retreat_large
+		}
+		ROOT = {
+			activate_law = scope:revolutionaries_law
+		}
+		scope:reforms_at_gunpoint_ig = {
+			add_modifier = {
+				name = modifier_vanguard_against_radicalism
+				months = normal_modifier_time
+			}
+		}
+		add_loyalists = {
+			value = small_radicals
+		}
+	}
+
+	option = {
+		name = revolution_pulse_events.10.c
+		scope:ongoing_revolution = {
+			add_civil_war_progress = revolution_advance_large
+		}
+		scope:ongoing_revolution_movement = {
+			add_modifier = {
+				name = modifier_movement_reforms_at_gunpoint_failed
+				months = normal_modifier_time
+			}
+		}
+		scope:reforms_at_gunpoint_ig = {
+			add_modifier = {
+				name = modifier_refused_advice
+				months = normal_modifier_time
+			}
+		}
+	}
+}

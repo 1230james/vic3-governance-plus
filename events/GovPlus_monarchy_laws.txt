@@ -1,0 +1,96 @@
+﻿namespace = monarchy_law_events
+
+# Popular Acclamation
+monarchy_law_events.1 = { # Republic-to-Monarchy Advancement
+	type = country_event
+
+	title = monarchy_law_events.1.t
+	desc = monarchy_law_events.1.d
+	flavor = monarchy_law_events.1.f
+
+	category = enactment
+
+	event_image = {
+		video = "unspecific_ruler_speaking_to_people"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_newspaper.dds"
+
+	duration = 3
+
+	cooldown = { months = normal_modifier_time }
+	
+	trigger = {
+		OR = {
+			# has_law = law_type:law_presidential_republic
+			# has_law = law_type:law_parliamentary_republic\
+            has_law = law_type:GovPlus_law_republic
+			has_law = law_type:law_council_republic
+		}
+		NOT = {
+			has_modifier = monarchist_agitation
+		}
+		is_enacting_law = law_type:law_monarchy
+		any_interest_group = {
+			is_marginal = no
+			law_stance = {
+				law = owner.currently_enacting_law.type
+				value > neutral
+			}
+		}
+	}
+	
+	immediate = {
+		currently_enacting_law = {
+			save_scope_as = current_law_scope
+		}
+		random_interest_group = {
+			limit = {
+				is_marginal = no
+				law_stance = {
+					law = owner.currently_enacting_law.type
+					value > neutral
+				}
+			}
+			save_scope_as = monarchist_ig_scope
+			leader = {
+				save_scope_as = monarchist_ig_leader_scope
+			}
+		}
+	}
+
+	cancellation_trigger = {
+		NOT = { currently_enacting_law = scope:current_law_scope }
+	}
+
+	option = {
+		name = monarchy_law_events.1.a
+        default_option = yes
+
+		add_enactment_modifier = {
+			name = monarchist_agitation
+		}
+		scope:monarchist_ig_leader_scope = {
+			add_modifier = {
+				name = the_man_of_the_hour
+				months = normal_modifier_time
+			}
+		}
+	}
+
+	option = {
+		name = monarchy_law_events.1.b
+
+		add_enactment_modifier = {
+			name = monarchist_agitation
+		}
+		scope:monarchist_ig_scope = {
+			add_modifier = {
+				name = attracting_notables
+				months = normal_modifier_time
+			}
+		}
+	}
+}

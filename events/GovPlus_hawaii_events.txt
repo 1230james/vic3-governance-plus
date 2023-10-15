@@ -1,0 +1,52 @@
+﻿namespace = hawaii_events
+
+hawaii_events.3 = { #Failed JE
+	type = country_event
+	placement = ROOT
+
+	title = hawaii_events.3.t
+	desc = hawaii_events.3.d
+	flavor = hawaii_events.3.f
+
+	event_image = {
+		video = "europenorthamerica_springtime_of_nations"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	duration = 3
+
+	trigger = {
+	}
+
+	immediate = {
+		remove_global_variable = gp_hawaii_interest
+		if = {
+			limit = {
+				any_country = {
+					has_variable = hawaii_interest
+				}
+			}
+			random_country = {
+				limit = {
+					has_variable = hawaii_interest
+				}
+				save_scope_as = hawaiian_coup
+			}
+		}
+	}
+
+	option = { #Government overthrown policy change
+		name = hawaii_events.3.a
+		default_option = yes
+		activate_law = law_type:GovPlus_law_republic # law_type:law_presidential_republic
+		activate_law = law_type:law_oligarchy
+		scope:hawaiian_coup = {
+			trigger_event = {
+				id = hawaii_events.4
+			}
+		}
+	}
+}

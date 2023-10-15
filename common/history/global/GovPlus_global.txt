@@ -1,0 +1,17 @@
+﻿# Apply laws to make vanilla/lightly modded starting governments compatible with Gov+ laws
+# 
+GLOBAL = {
+    every_country = {
+        # Suffrage
+        if = {
+            limit = {
+                NOR = {
+                    has_law = law_type:law_landed_voting
+                    has_law = law_type:law_wealth_voting
+                    has_law = law_type:law_census_voting
+                }
+            }
+            activate_law = law_type:GovPlus_law_no_voting
+        }
+    }
+}
