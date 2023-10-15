@@ -1,0 +1,44 @@
+﻿l_english:
+    # Law Groups
+    GovPlus_lawgroup_political_franchise:      "Voting Franchise"
+    GovPlus_lawgroup_political_franchise_desc: "Determines if elections are held and who is granted the right to vote."
+    
+    # Laws
+    GovPlus_law_republic:            "Republic"
+    GovPlus_law_republic_desc:       "A form of governance where political power is held by the people and their representatives."
+    GovPlus_law_council_system:      "Council System"
+    GovPlus_law_council_system_desc: "A political system where workers elect delegates to local councils, who in turn elect delegates to increasingly higher councils. Extends concepts of workplace organization to general governance."
+    GovPlus_law_no_voting:           "No Voting"
+    GovPlus_law_no_voting_desc:      "Nobody is given votes, and positions of power are inherited or appointed rather than elected."
+    
+    # Government Types
+    GovPlus_gov_technate_dictator:      "$gov_technate_presidential$"
+    GovPlus_gov_technate_dictator_desc: "$gov_technate_presidential_desc$"
+    
+    GovPlus_gov_technate_democratic:      "$gov_technate_parliamentary$"
+    GovPlus_gov_technate_democratic_desc: "$gov_technate_parliamentary_desc$"
+    
+    GovPlus_gov_oligarchy_dictator:      "$gov_parliamentary_oligarchy$"
+    GovPlus_gov_oligarchy_dictator_desc: "$gov_parliamentary_oligarchy_desc$"
+    
+    GovPlus_gov_oligarchy_democratic:      "$gov_parliamentary_oligarchy$"
+    GovPlus_gov_oligarchy_democratic_desc: "$gov_parliamentary_oligarchy_desc$"
+    
+    GovPlus_gov_delegative_republic:      "Delegative Republic"
+    GovPlus_gov_delegative_republic_desc: "This is a [concept_government_type] where the [concept_country] is ruled by delegates ultimately [Concept('concept_election', '$concept_elected$')] directly by the voters.\n\n$TRANSFER_OF_POWER_NAME_DESC$"
+    
+    # Modifier Types
+    modifier_state_pop_support_GovPlus_law_republic_add:       "[GetLawType('GovPlus_law_republic').GetName] [concept_pop] Support"
+    modifier_state_pop_support_GovPlus_law_republic_add_desc:  "Impacts the rate at which [Concept('concept_pop', '$concept_pops$')] support the [GetLawType('GovPlus_law_republic').GetName] [concept_law]."
+    modifier_state_pop_support_GovPlus_law_republic_mult:      "$modifier_state_pop_support_GovPlus_law_republic_add$"
+    modifier_state_pop_support_GovPlus_law_republic_mult_desc: "$modifier_state_pop_support_GovPlus_law_republic_add_desc$"
+    
+    modifier_state_pop_support_GovPlus_law_council_system_add:       "[GetLawType('GovPlus_law_council_system').GetName] [concept_pop] Support"
+    modifier_state_pop_support_GovPlus_law_council_system_add_desc:  "Impacts the rate at which [Concept('concept_pop', '$concept_pops$')] support the [GetLawType('GovPlus_law_council_system').GetName] [concept_law]."
+    modifier_state_pop_support_GovPlus_law_council_system_mult:      "$modifier_state_pop_support_GovPlus_law_council_system_add$"
+    modifier_state_pop_support_GovPlus_law_council_system_mult_desc: "$modifier_state_pop_support_GovPlus_law_council_system_add_desc$"
+    
+    modifier_state_pop_support_GovPlus_law_no_voting_add:       "[GetLawType('GovPlus_law_no_voting').GetName] [concept_pop] Support"
+    modifier_state_pop_support_GovPlus_law_no_voting_add_desc:  "Impacts the rate at which [Concept('concept_pop', '$concept_pops$')] support the [GetLawType('GovPlus_law_no_voting').GetName] [concept_law]."
+    modifier_state_pop_support_GovPlus_law_no_voting_mult:      "$modifier_state_pop_support_GovPlus_law_no_voting_add$"
+    modifier_state_pop_support_GovPlus_law_no_voting_mult_desc: "$modifier_state_pop_support_GovPlus_law_no_voting_add_desc$"
