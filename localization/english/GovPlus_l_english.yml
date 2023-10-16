@@ -3,17 +3,6 @@
     GovPlus_gui_monarch_name_and_title: "#title [Character.GetPrimaryRoleTitle]#! #bold [Character.GetFullNameNoFormatting]#!"
     GovPlus_gui_new_prime_minister:     "New $GovPlus_title_parl_mon$!"
     
-    # Titles
-    GovPlus_title_pres_mon:        "[Country.GetCustom('GovPlus_cl_premier_title')]"
-    GovPlus_title_parl_mon:        "[Country.GetCustom('GovPlus_cl_prime_minister_title')]"
-    GovPlus_title_pres_mon_char:   "[Character.GetCountry.GetCustom('GovPlus_cl_premier_title')]"
-    GovPlus_title_parl_mon_char:   "[Character.GetCountry.GetCustom('GovPlus_cl_prime_minister_title')]"
-    GovPlus_title_pres_mon_player: "[GetPlayer.GetCustom('GovPlus_cl_premier_title')]"
-    GovPlus_title_parl_mon_player: "[GetPlayer.GetCustom('GovPlus_cl_prime_minister_title')]"
-    
-    GovPlus_premier:        "$RULER_PREMIER$"
-    GovPlus_prime_minister: "Prime Minister"
-    
     # Law Groups
     GovPlus_lawgroup_political_franchise:      "Voting Franchise"
     GovPlus_lawgroup_political_franchise_desc: "Determines if elections are held and who is granted the right to vote."
@@ -25,6 +14,15 @@
     GovPlus_law_council_system_desc: "A political system where workers elect delegates to local councils, who in turn elect delegates to increasingly higher councils. Extends concepts of workplace organization to general governance."
     GovPlus_law_no_voting:           "No Voting"
     GovPlus_law_no_voting_desc:      "Nobody is given votes, and positions of power are inherited or appointed rather than elected."
+    
+    # Character Interactions
+    GovPlus_grant_premiership: "Appoint as $concept_GovPlus_head_of_gov$"
+    GovPlus_tt_premiership:    "[Character.GetFullName] becomes the [concept_GovPlus_head_of_gov] in [Character.GetCountry.GetName]."
+    GovPlus_tt_not_premier:    "[Character.GetFullName] is not already the [concept_GovPlus_head_of_gov] in [Character.GetCountry.GetName]"
+    
+    # Journal Entries
+    GovPlus_je_premier_election: "Appointing the Next $GovPlus_premier$"
+    GovPlus_je_premier_election_reason: "With the upcoming [concept_election], the people of [Country.GetName] eagerly watch and listen to see who the next [Concept('concept_GovPlus_head_of_gov', '$GovPlus_premier$')] will be.\n\n[JournalEntry.GetCountry.MakeScope.Var('GovPlus_prospective_premier').GetInterestGroup.GetLeader.GetFullName] of the [JournalEntry.GetCountry.MakeScope.Var('GovPlus_prospective_premier').GetInterestGroup.GetName] will be the one appointed, based on the most recent polling."
     
     # Concepts
     concept_GovPlus_head_of_gov:      "Head of Government"
@@ -66,3 +64,14 @@
     modifier_state_pop_support_GovPlus_law_no_voting_add_desc:  "Impacts the rate at which [Concept('concept_pop', '$concept_pops$')] support the [GetLawType('GovPlus_law_no_voting').GetName] [concept_law]."
     modifier_state_pop_support_GovPlus_law_no_voting_mult:      "$modifier_state_pop_support_GovPlus_law_no_voting_add$"
     modifier_state_pop_support_GovPlus_law_no_voting_mult_desc: "$modifier_state_pop_support_GovPlus_law_no_voting_add_desc$"
+    
+    # Titles
+    GovPlus_title_pres_mon:        "[Country.GetCustom('GovPlus_cl_premier_title')]"
+    GovPlus_title_parl_mon:        "[Country.GetCustom('GovPlus_cl_prime_minister_title')]"
+    GovPlus_title_pres_mon_char:   "[Character.GetCountry.GetCustom('GovPlus_cl_premier_title')]"
+    GovPlus_title_parl_mon_char:   "[Character.GetCountry.GetCustom('GovPlus_cl_prime_minister_title')]"
+    GovPlus_title_pres_mon_player: "[GetPlayer.GetCustom('GovPlus_cl_premier_title')]"
+    GovPlus_title_parl_mon_player: "[GetPlayer.GetCustom('GovPlus_cl_prime_minister_title')]"
+    
+    GovPlus_premier:        "$RULER_PREMIER$"
+    GovPlus_prime_minister: "Prime Minister"

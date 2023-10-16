@@ -1,0 +1,47 @@
+﻿# Root: Country
+GovPlus_se_set_prime_minister = {
+    random_interest_group = {
+        limit = {
+            is_in_government = yes
+            is_strongest_ig_in_government = yes
+        }
+        owner = {
+            set_variable = {
+                name  = GovPlus_head_of_gov
+                value = prev
+            }
+        }
+    }
+    if = { # Clear variable if somehow nobody is in government
+        limit = {
+            OR = {
+                NOT = {
+                    has_variable = GovPlus_head_of_gov
+                }
+                var:GovPlus_head_of_gov ?= {
+                    is_in_government = no
+                }
+            }
+        }
+        remove_variable = GovPlus_head_of_gov
+        set_variable = GovPlus_head_of_gov
+    }
+}
+
+GovPlus_se_set_premier = {
+    # ordered_interest_group = {
+        # max = 1
+        # order_by = ig_clout
+    # }
+    remove_variable = GovPlus_head_of_gov
+    get_ruler_for:presidential_elective = {
+        interest_group = {
+            owner = {
+                set_variable = {
+                    name  = GovPlus_head_of_gov
+                    value = prev
+                }
+            }
+        }
+    }
+}
