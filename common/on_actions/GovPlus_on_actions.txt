@@ -119,11 +119,13 @@ GovPlus_oa_on_law_activated = {
             }
             # Monarchy abolished
             else = {
-                if = {
-                    limit = {
-                        has_variable = GovPlus_head_of_gov
+                owner = {
+                    if = {
+                        limit = {
+                            has_variable = GovPlus_head_of_gov
+                        }
+                        remove_variable = GovPlus_head_of_gov
                     }
-                    remove_variable = GovPlus_head_of_gov
                 }
             }
         }

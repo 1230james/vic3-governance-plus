@@ -12,15 +12,11 @@ GovPlus_se_set_prime_minister = {
             }
         }
     }
-    if = { # Clear variable if somehow nobody is in government
+    if = { # Clear/reset variable if somehow nobody is in government
         limit = {
-            OR = {
-                NOT = {
-                    has_variable = GovPlus_head_of_gov
-                }
-                var:GovPlus_head_of_gov ?= {
-                    is_in_government = no
-                }
+            has_variable = GovPlus_head_of_gov
+            var:GovPlus_head_of_gov = {
+                is_in_government = no
             }
         }
         remove_variable = GovPlus_head_of_gov
