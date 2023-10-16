@@ -1,6 +1,6 @@
 ﻿l_english:
     # GUI Text
-    GovPlus_gui_monarch_name_and_title: "#title [Character.GetPrimaryRoleTitle]#! #bold [Character.GetFullNameNoFormatting]#!"
+    GovPlus_gui_monarch_name_and_title: "#title [Character.GetPrimaryRoleTitle]#! #bold [Character.GetCustom('GetUniversalFullNameNoFormatting')]#!"
     GovPlus_gui_new_prime_minister:     "New $GovPlus_title_parl_mon$!"
     
     # Law Groups
@@ -17,12 +17,12 @@
     
     # Character Interactions
     GovPlus_grant_premiership: "Appoint as $concept_GovPlus_head_of_gov$"
-    GovPlus_tt_premiership:    "[Character.GetFullName] becomes the [concept_GovPlus_head_of_gov] in [Character.GetCountry.GetName]."
-    GovPlus_tt_not_premier:    "[Character.GetFullName] is not already the [concept_GovPlus_head_of_gov] in [Character.GetCountry.GetName]"
+    GovPlus_tt_premiership:    "[Character.GetCustom('GetUniversalFullName')] becomes the [concept_GovPlus_head_of_gov] in [Character.GetCountry.GetName]."
+    GovPlus_tt_not_premier:    "[Character.GetCustom('GetUniversalFullName')] is not already the [concept_GovPlus_head_of_gov] in [Character.GetCountry.GetName]"
     
     # Journal Entries
     GovPlus_je_premier_election: "The Next $concept_GovPlus_head_of_gov$"
-    GovPlus_je_premier_election_reason: "With the upcoming [concept_election], the people of [Country.GetName] eagerly watch and listen to see who the next [Concept('concept_GovPlus_head_of_gov', Country.GetCustom('GovPlus_cl_head_of_gov_title'))] will be.\n\n[JournalEntry.GetCountry.MakeScope.Var('GovPlus_prospective_premier').GetInterestGroup.GetLeader.GetFullName] of the [JournalEntry.GetCountry.MakeScope.Var('GovPlus_prospective_premier').GetInterestGroup.GetName] will be the one appointed, based on the most recent polling."
+    GovPlus_je_premier_election_reason: "With the upcoming [concept_election], the people of [Country.GetName] eagerly watch and listen to see who the next [Concept('concept_GovPlus_head_of_gov', Country.GetCustom('GovPlus_cl_head_of_gov_title'))] will be.\n\n[JournalEntry.GetCountry.MakeScope.Var('GovPlus_prospective_premier').GetInterestGroup.GetLeader.GetCustom('GetUniversalFullName')] of the [JournalEntry.GetCountry.MakeScope.Var('GovPlus_prospective_premier').GetInterestGroup.GetName] will be the one appointed, based on the most recent polling."
     
     # Concepts
     concept_GovPlus_head_of_gov:      "Head of Government"

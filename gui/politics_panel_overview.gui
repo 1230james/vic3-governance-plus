@@ -443,7 +443,7 @@ types politics_panel_types
 					}
 					
 					textbox = {
-						raw_text = "#BOLD [Character.GetFullNameNoFormatting]#!"
+						raw_text = "#BOLD [Character.GetCustom('GetUniversalFullNameNoFormatting')]#!"
 						layoutpolicy_horizontal = expanding
 						size = { 0 20 }
 						fontsize_min = 14
@@ -844,7 +844,7 @@ types politics_panel_types
 												text = "[Concept('concept_ruler', Character.GetPrimaryRoleTitle)]"
 											}
 											blockoverride "text" {
-												text = "[Character.GetFullName]"
+												text = "[Character.GetCustom('GetUniversalFullName')]"
 											}
 										}
 										### INTEREST GROUP

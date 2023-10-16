@@ -51,19 +51,21 @@ GovPlus_oa_on_election = {
             limit = {
                 GovPlus_st_is_presidential_monarchy = yes
             }
+            # GovPlus_se_set_premier = yes # campaign end on action does not work in 1.4; will work in 1.5
             add_journal_entry = {
                 type = GovPlus_je_premier_election
             }
         }
     }
 }
+
 on_election_campaign_start = {
     on_actions = {
         GovPlus_oa_on_election
     }
 }
 
-# on_election_campaign_end = { # Broken, for some reason
+# on_election_campaign_end = { # Broken in 1.4, will be fixed in 1.5
 	# on_actions = {
         # GovPlus_oa_on_election
     # }
