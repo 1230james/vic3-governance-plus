@@ -401,8 +401,11 @@ types politics_panel_types
 		tooltipwidget = {
 			FancyTooltip_Character = {}
 		}
-
+        
+        GovPlus_head_of_gov = {} # Gov+
 		hbox = {
+            visible = "[GetScriptedGui('GovPlus_sg_is_not_conmon').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+            
 			layoutpolicy_horizontal = expanding
 			layoutpolicy_vertical = expanding
 			spacing = 5
@@ -440,7 +443,7 @@ types politics_panel_types
 					}
 					
 					textbox = {
-						raw_text = "#BOLD [Character.GetFullNameNoFormatting]#!"
+						raw_text = "#BOLD [Character.GetCustom('GetUniversalFullNameNoFormatting')]#!"
 						layoutpolicy_horizontal = expanding
 						size = { 0 20 }
 						fontsize_min = 14
@@ -841,7 +844,7 @@ types politics_panel_types
 												text = "[Concept('concept_ruler', Character.GetPrimaryRoleTitle)]"
 											}
 											blockoverride "text" {
-												text = "[Character.GetFullName]"
+												text = "[Character.GetCustom('GetUniversalFullName')]"
 											}
 										}
 										### INTEREST GROUP

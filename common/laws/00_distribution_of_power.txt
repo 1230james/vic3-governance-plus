@@ -22,10 +22,10 @@ law_autocracy = {
 	modifier = {
 		country_legitimacy_headofstate_add = 30
         # country_legitimacy_govt_total_clout_add = 120 # Gov+
-		country_legitimacy_ideological_incoherence_mult = 0.5
+		country_legitimacy_ideological_incoherence_mult = 0.25 # Gov+ # Vanilla: 0.5
 		country_aristocrats_pol_str_mult = 0.5
 		country_officers_pol_str_mult = 0.5
-		country_authority_add = 100 # Gov+ # Vanilla: 200
+		country_authority_add = 150 # Gov+ # Vanilla: 200
 	}
 	
 	possible_political_movements = {
@@ -99,7 +99,7 @@ law_technocracy = {
 		country_academics_pol_str_mult = 0.33
 		country_engineers_pol_str_mult = 0.33
 		country_officers_pol_str_mult = 0.33
-		country_authority_add = 50 # Gov+ # Vanilla: 100
+		country_authority_add = 75 # Gov+ # Vanilla: 100
 	}
 
 	unlocking_technologies = {
@@ -174,7 +174,7 @@ law_oligarchy = {
 		country_legitimacy_ideological_incoherence_mult = -0.1
 		country_aristocrats_pol_str_mult = 0.5
 		country_capitalists_pol_str_mult = 0.25
-		country_authority_add = 50 # Gov+ # Vanilla: 100
+		country_authority_add = 75 # Gov+ # Vanilla: 100
 	}
 	
 	possible_political_movements = {
@@ -259,7 +259,7 @@ law_elder_council = {
 		country_aristocrats_pol_str_mult = 0.5
 		country_officers_pol_str_mult = 0.5
 		country_clergymen_pol_str_mult = 0.5
-		country_authority_add = 100 # Gov+ # Vanilla: 200
+		country_authority_add = 150 # Gov+ # Vanilla: 200
 	}
 	
 	possible_political_movements = {
@@ -326,7 +326,7 @@ law_single_party_state = {
 	modifier = {
 		country_legitimacy_govt_total_votes_add = 100
 		country_legitimacy_ideological_incoherence_mult = -0.25
-		country_authority_add = 150 # Gov+ # Vanilla: 250
+		country_authority_add = 200 # Gov+ # Vanilla: 250
 		country_voting_power_base_add = 20
 		interest_group_in_government_attraction_mult = 0.20
 	}
@@ -465,7 +465,7 @@ law_presidential_republic = {
 		country_legitimacy_headofstate_add = 10
 		# country_legitimacy_govt_total_votes_add = 10
 		country_legitimacy_ideological_incoherence_mult = 0.2
-		country_authority_add = 50 # Gov+ # Vanilla: 100
+		country_authority_add = 75 # Gov+ # Vanilla: 100
 	}
 
 	on_activate = {

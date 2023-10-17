@@ -19,7 +19,7 @@ law_chiefdom = {
 	
 	modifier = {
 		country_legitimacy_headofstate_add = 20
-		country_authority_add = 50 # Gov+ # Vanilla: 100
+		country_authority_add = 100
 	}
 	
 	pop_support = {
@@ -55,7 +55,7 @@ law_monarchy = {
 		country_legitimacy_headofstate_add = 20
 		country_legitimacy_ideological_incoherence_mult = 0.1
 		interest_group_ig_landowners_pol_str_mult = 0.25
-		country_authority_add = 100 # Gov+ # Vanilla: 200
+		country_authority_add = 150 # Gov+ # Vanilla: 200
 	}
 	
 	possible_political_movements = {
@@ -208,7 +208,7 @@ law_theocracy = {
 		country_legitimacy_headofstate_add = 20
 		country_legitimacy_ideological_incoherence_mult = 0.1
 		interest_group_ig_devout_pol_str_mult = 0.25
-		country_authority_add = 100 # Gov+ # Vanilla: 200
+		country_authority_add = 150 # Gov+ # Vanilla: 200
 	}
 	
 	possible_political_movements = {

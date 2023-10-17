@@ -1,4 +1,6 @@
-﻿enactment_phase_0 = {
+﻿# Vanilla overwrites
+
+enactment_phase_0 = {
 	type = country
 
 	text = {

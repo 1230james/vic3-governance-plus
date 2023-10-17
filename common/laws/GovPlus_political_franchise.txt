@@ -17,7 +17,7 @@ GovPlus_law_no_voting = {
         country_legitimacy_headofstate_add = 30
 		country_legitimacy_govt_total_clout_add = 140
 		country_legitimacy_ideological_incoherence_mult = 0.5
-		country_authority_add = 100 # Gov+ # Vanilla: 200
+		country_authority_add = 100 # Gov+ # Vanilla Autocracy: 200
     }
     
     possible_political_movements = {
