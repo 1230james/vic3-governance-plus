@@ -13,6 +13,7 @@ GovPlus_ev.1 = {
                 }
             }
             GovPlus_se_set_prime_minister = yes
+            GovPlus_se_update_head_of_gov_modifier = yes
         }
     }
 }
