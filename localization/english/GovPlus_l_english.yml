@@ -24,6 +24,9 @@
     GovPlus_je_premier_election: "The Next $concept_GovPlus_head_of_gov$"
     GovPlus_je_premier_election_reason: "With the upcoming [concept_election], the people of [Country.GetName] eagerly watch and listen to see who the next [Concept('concept_GovPlus_head_of_gov', Country.GetCustom('GovPlus_cl_head_of_gov_title'))] will be.\n\n[JournalEntry.GetCountry.MakeScope.Var('GovPlus_prospective_premier').GetInterestGroup.GetLeader.GetCustom('GetUniversalFullName')] of the [JournalEntry.GetCountry.MakeScope.Var('GovPlus_prospective_premier').GetInterestGroup.GetName] will be the one appointed, based on the most recent polling."
     
+    # Modifiers
+    GovPlus_md_head_of_gov_in_gov: "[concept_GovPlus_head_of_gov]'s [concept_interest_group] [concept_in_government]"
+    
     # Concepts
     concept_GovPlus_head_of_gov:      "Head of Government"
     concept_GovPlus_head_of_gov_desc: "In some [Concept('concept_government_type', '$concept_government_types$')], the [concept_head_of_state] is not the #italic de facto#! leader of the [Concept('concept_country','$concept_country_possessive$')] [concept_government], and instead, that role belongs to a different [concept_character]. Such a character does not share the same influence as the [concept_head_of_state], but rather serves as an indicator of which [concept_party] or [concept_interest_group] holds the most [concept_clout] [Concept('concept_in_government', 'within government')].$GovPlus_head_of_gov_conmon_desc$"

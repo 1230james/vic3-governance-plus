@@ -41,3 +41,34 @@ GovPlus_se_set_premier = {
         }
     }
 }
+
+GovPlus_se_update_head_of_gov_modifier = {
+    if = {
+        limit = {
+            GovPlus_st_is_presidential_monarchy = yes
+            has_variable = GovPlus_head_of_gov
+            var:GovPlus_head_of_gov ?= {
+                is_in_government = yes
+            }
+            ruler.interest_group = { # the king is head of state, so pres. repub. already gives them +10 legitimacy
+                is_in_government = no
+            }
+        }
+        if = {
+            limit = {
+                NOT = {
+                    has_modifier = GovPlus_md_head_of_gov_in_gov
+                }
+            }
+            add_modifier = {
+                name = GovPlus_md_head_of_gov_in_gov
+            }
+        }
+    }
+    else_if = {
+        limit = {
+            has_modifier = GovPlus_md_head_of_gov_in_gov
+        }
+        remove_modifier = GovPlus_md_head_of_gov_in_gov
+    }
+}

@@ -7,6 +7,12 @@ GovPlus_oa_on_reform = {
             }
             GovPlus_se_set_prime_minister = yes
         }
+        else_if = {
+            limit = {
+                GovPlus_st_is_presidential_monarchy = yes
+            }
+            GovPlus_se_update_head_of_gov_modifier = yes
+        }
     }
 }
 on_government_reformed = {
@@ -26,12 +32,14 @@ GovPlus_oa_on_resign = {
                     GovPlus_st_is_parliamentary_monarchy = yes
                 }
                 GovPlus_se_set_prime_minister = yes
+                GovPlus_se_update_head_of_gov_modifier = yes
             }
             else_if = {
                 limit = {
                     GovPlus_st_is_presidential_monarchy = yes
                 }
                 GovPlus_se_set_premier = yes
+                GovPlus_se_update_head_of_gov_modifier = yes
             }
         }
     }
@@ -52,6 +60,7 @@ GovPlus_oa_on_election = {
                 GovPlus_st_is_presidential_monarchy = yes
             }
             # GovPlus_se_set_premier = yes # campaign end on action does not work in 1.4; will work in 1.5
+            # GovPlus_se_update_head_of_gov_modifier = yes
             add_journal_entry = {
                 type = GovPlus_je_premier_election
             }
@@ -117,6 +126,9 @@ GovPlus_oa_on_law_activated = {
                         }
                         remove_variable = GovPlus_head_of_gov
                     }
+                    
+                    # Remove Head of Gov in government modifier (scripted effect handles removing)
+                    GovPlus_se_update_head_of_gov_modifier = yes
                 }
             }
             # Monarchy abolished
@@ -128,6 +140,7 @@ GovPlus_oa_on_law_activated = {
                         }
                         remove_variable = GovPlus_head_of_gov
                     }
+                    GovPlus_se_update_head_of_gov_modifier = yes
                 }
             }
         }
@@ -150,6 +163,7 @@ GovPlus_oa_on_law_activated = {
                         }
                     }
                     GovPlus_se_set_prime_minister = yes
+                    GovPlus_se_update_head_of_gov_modifier = yes
                 }
                 # Constitutionalism? More like uhhhhhhhh crap!
                 else_if = {
@@ -158,6 +172,7 @@ GovPlus_oa_on_law_activated = {
                         has_variable = GovPlus_head_of_gov
                     }
                     remove_variable = GovPlus_head_of_gov
+                    GovPlus_se_update_head_of_gov_modifier = yes
                 }
             }
         }

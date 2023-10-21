@@ -28,7 +28,10 @@
     }
     
     invalid = {
-        in_election_campaign = no
+        OR = {
+            GovPlus_st_is_presidential_monarchy = no
+            in_election_campaign = no
+        }
     }
     
     on_invalid = {
@@ -37,6 +40,7 @@
                 GovPlus_st_is_presidential_monarchy = yes
             }
             GovPlus_se_set_premier = yes
+            GovPlus_se_update_head_of_gov_modifier = yes
         }
         remove_variable = GovPlus_prospective_premier
     }
