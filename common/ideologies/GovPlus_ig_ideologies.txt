@@ -254,5 +254,6 @@ ideology_plutocratic = {
 		law_colonial_exploitation = approve
 		law_no_colonial_affairs = neutral
 		law_colonial_resettlement = neutral
+        law_frontier_colonization = neutral
 	}
 }

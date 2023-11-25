@@ -77,6 +77,51 @@ republican_portugal = {
 	}
 }
 
+ddr_germany = {
+	color = "DDR_green"
+
+	possible = {
+		exists = c:GER
+		THIS = c:GER
+		OR = {
+			AND = {
+				has_law = law_type:law_single_party_state
+				py:communist_party = {
+					any_member = {
+						is_in_government = yes
+					}
+				}
+			}
+			AND = {
+				OR = {
+					has_law = law_type:law_autocracy
+					has_law = law_type:law_technocracy
+					has_law = law_type:law_oligarchy
+				}
+				any_scope_character = {
+					is_ruler = yes
+					OR = {
+						has_ideology = ideology:ideology_communist
+						has_ideology = ideology:ideology_vanguardist
+						has_ideology = ideology:ideology_anarchist
+					}
+				}
+			}
+			AND = {
+				is_subject = yes
+				overlord = {
+					has_law = law_type:law_council_republic
+				}
+			}
+		}
+		OR = {
+			# has_law = law_type:law_parliamentary_republic # Gov+
+			# has_law = law_type:law_presidential_republic # Gov+
+            has_law = law_type:GovPlus_law_republic # Gov+
+		}
+	}
+}
+
 roman_rome = {
 	color = "roman_red"
 
@@ -133,6 +178,73 @@ republican_hindustan = {
 			# has_law = law_type:law_presidential_republic # Gov+
             has_law = law_type:GovPlus_law_republic # Gov+
 			has_law = law_type:law_council_republic
+		}
+	}
+}
+
+hre_republic = {
+	color = "european_blue"
+
+	possible = {
+		exists = c:HRE
+		THIS = c:HRE
+		# OR = { # Gov+
+			# has_law = law_type:law_parliamentary_republic
+			# has_law = law_type:law_presidential_republic
+		# }
+        has_law = law_type:GovPlus_law_republic # Gov+
+		NOT = {
+			has_law = law_type:law_technocracy
+		}
+		NOT = {
+			coa_fascist_trigger = yes
+		}
+	}
+}
+
+hre_technate = {
+	color = "technate_grey"
+
+	possible = {
+		exists = c:HRE
+		THIS = c:HRE
+		# OR = { # Gov+
+			# has_law = law_type:law_parliamentary_republic
+			# has_law = law_type:law_presidential_republic
+		# }
+        has_law = law_type:GovPlus_law_republic # Gov+
+		has_law = law_type:law_technocracy
+	}
+}
+
+spain_republican = {
+	color = "republican_spain_purple"
+
+	possible = {
+		exists = c:SPA
+		THIS = c:SPA
+		# OR = { # Gov+
+			# has_law = law_type:law_parliamentary_republic
+			# has_law = law_type:law_presidential_republic
+		# }
+        has_law = law_type:GovPlus_law_republic # Gov+
+	}
+}
+
+brazil_republican = {
+	color = "republican_brazil_green"
+
+	possible = {
+		exists = c:BRZ
+		THIS = c:BRZ
+		OR = {
+			# has_law = law_type:law_parliamentary_republic # Gov+
+			# has_law = law_type:law_presidential_republic # Gov+
+            has_law = law_type:GovPlus_law_republic # Gov+
+			has_law = law_type:law_council_republic
+		}
+		NOT = {
+			coa_fascist_trigger = yes
 		}
 	}
 }
