@@ -334,7 +334,17 @@ law_anarchy = {
 	}
 	
 	unlocking_laws = {
-		law_cooperative_ownership
+		# law_cooperative_ownership
+        GovPlus_law_council_system
+	}
+    
+    disallowing_laws = {
+		law_traditionalism
+        law_interventionism
+        law_agrarianism
+        law_industry_banned
+        law_laissez_faire
+        law_command_economy
 	}
 	
 	modifier = {
