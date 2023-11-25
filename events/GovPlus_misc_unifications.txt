@@ -1,0 +1,181 @@
+﻿namespace = formation
+
+# Holy Roman Empire
+formation.18 = {
+	type = country_event
+	placement = ROOT
+
+	title = formation.18.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_law = law_type:law_monarchy
+				}
+				desc = formation.18.d_1
+			}
+			triggered_desc = {
+				trigger = {
+					coa_fascist_trigger = yes
+					NOT = {
+						has_law = law_type:law_council_republic
+					}
+				}
+				desc = formation.18.d_2
+			}
+			triggered_desc = {
+				trigger = {
+					has_law = law_type:law_council_republic
+				}
+				desc = formation.18.d_3
+			}
+			triggered_desc = {
+				trigger = {
+					# OR = { # Gov+
+						# has_law = law_type:law_parliamentary_republic
+						# has_law = law_type:law_presidential_republic
+					# }
+                    has_law = law_type:GovPlus_law_republic # Gov+
+				}
+				desc = formation.18.d_4
+			}
+		}
+	}
+	flavor = {
+		first_valid = {
+			triggered_desc = {
+				trigger = {
+					has_law = law_type:law_monarchy
+				}
+				desc = formation.18.f_1
+			}
+			triggered_desc = {
+				trigger = {
+					coa_fascist_trigger = yes
+					NOT = {
+						has_law = law_type:law_council_republic
+					}
+				}
+				desc = formation.18.f_2
+			}
+			triggered_desc = {
+				trigger = {
+					has_law = law_type:law_council_republic
+				}
+				desc = formation.18.f_3
+			}
+			triggered_desc = {
+				trigger = {
+					# OR = { # Gov+
+						# has_law = law_type:law_parliamentary_republic
+						# has_law = law_type:law_presidential_republic
+					# }
+                    has_law = law_type:GovPlus_law_republic # Gov+
+				}
+				desc = formation.18.f_4
+			}
+		}
+	}
+	event_image = {
+		video = "unspecific_signed_contract"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	duration = 3
+
+	trigger = {
+		c:HRE ?= THIS
+		NOT = { has_global_variable = has_formed_hre }
+	}
+
+	immediate = {
+		set_global_variable = has_formed_hre
+		save_scope_as = formation_country
+		ruler = { save_scope_as = ruler_scope }
+		every_country = {
+			limit = {
+				has_diplomatic_relevance = ROOT
+			}
+			post_notification = unification_notification_one_culture
+		}
+	}
+
+	option = {
+		name = formation.18.a
+		default_option = yes
+		add_modifier = {
+			name = unification_prestige
+			months = very_long_modifier_time
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	
+	option = {
+		name = formation.18.b
+		trigger = { 
+			has_law = law_type:law_council_republic
+			NOT = {
+				c:FRA ?= {
+					has_law = law_type:law_council_republic
+				}
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+		ROOT = {
+			create_incident = {
+				country = c:FRA
+				value = 15
+			}
+		}
+		add_modifier = {
+			name = unification_prestige
+			months = very_long_modifier_time
+		}
+		add_primary_culture = cu:french
+		add_radicals = {
+			value = medium_radicals
+			culture = cu:north_german
+		}
+		add_radicals = {
+			value = medium_radicals
+			culture = cu:south_german
+		}
+	}
+	
+	option = {
+		name = formation.18.c
+		trigger = {
+			# OR = { # Gov+
+                # has_law = law_type:law_parliamentary_republic
+                # has_law = law_type:law_presidential_republic
+            # }
+            has_law = law_type:GovPlus_law_republic # Gov+
+			NOT = {
+				coa_fascist_trigger = yes
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+		add_modifier = {
+			name = unification_prestige
+			months = very_long_modifier_time
+		}
+		add_primary_culture = cu:french
+		add_radicals = {
+			value = large_radicals
+			culture = cu:north_german
+		}
+		add_radicals = {
+			value = large_radicals
+			culture = cu:south_german
+		}
+	}
+}

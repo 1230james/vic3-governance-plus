@@ -1,0 +1,298 @@
+﻿namespace = italian_unification
+
+# Owned by Pan-Nationalist Radicals
+italian_unification.4 = {
+	type = country_event
+	placement = ROOT
+
+	title = italian_unification.4.t
+	desc = {
+		first_valid = {
+			triggered_desc = {
+				desc = italian_unification.4.d_annex
+				trigger = {
+					OR = {
+						any_scope_state = {
+							count < 2
+						}
+						has_variable = owned_by_pan_nationalist_radicals
+					}
+				}
+			}
+			triggered_desc = {
+				desc = italian_unification.4.d_coup
+				trigger = {
+					any_scope_state = {
+						count >= 2
+					}
+				}
+			}
+		}
+	}
+	flavor = italian_unification.4.f
+
+	event_image = {
+		video = "unspecific_signed_contract"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	duration = 3
+
+	cooldown = { months = 3 }
+
+	trigger = {
+		exists = var:italian_states_radicals_total_bar
+		var:italian_states_radicals_total_bar >= 25
+		any_country = {
+			NOT = {
+				this = root
+			}
+			NOT = {
+				is_subject = yes
+			}
+			OR = {
+				country_has_primary_culture = cu:north_italian
+				country_has_primary_culture = cu:south_italian
+			}
+		}
+	}
+
+	immediate = {
+		set_variable = risorgimento_unifying_stance
+		if = {
+			limit = {
+				has_variable = risorgimento_anti_unifying_stance
+			}
+			remove_variable = risorgimento_anti_unifying_stance
+		}
+		capital = {
+			save_scope_as = capital_scope
+		}
+		ordered_country = { # Why is this structured so strangely? So that the ordering always gets at least one country.
+			limit = {
+				OR = {
+					country_has_primary_culture = cu:north_italian
+					country_has_primary_culture = cu:south_italian
+				}
+				is_adjacent_to_country = ROOT
+				NOT = {
+					is_subject = yes
+				}
+				has_variable = risorgimento_unifying_stance
+				NOT = {
+					THIS = ROOT
+				}
+			}
+			order_by = country_rank
+			save_scope_as = italian_leader
+		}
+		if = {
+			limit = {
+				NOT = {
+					exists = scope:italian_leader
+				}
+			}
+			ordered_country = {
+				limit = {
+					OR = {
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+					}
+					NOT = {
+						is_subject = yes
+					}
+					has_variable = risorgimento_unifying_stance
+					NOT = {
+						THIS = ROOT
+					}
+				}
+				order_by = country_rank
+				save_scope_as = italian_leader
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					exists = scope:italian_leader
+				}
+			}
+			ordered_country = {
+				limit = {
+					OR = {
+						country_has_primary_culture = cu:north_italian
+						country_has_primary_culture = cu:south_italian
+					}
+					NOT = {
+						is_subject = yes
+					}
+					NOT = {
+						THIS = ROOT
+					}
+				}
+				order_by = country_rank
+				save_scope_as = italian_leader
+			}
+		}
+		save_scope_as = italian_pannational_country
+	}
+
+	option = {
+		name = italian_unification.4.a
+		default_option = yes
+		trigger = {
+			any_scope_state = {
+				count < 2
+			}
+		}
+		scope:italian_leader = {
+			trigger_event = { id = italian_unification.5 popup = yes }
+		}
+	}
+
+	option = {
+		name = italian_unification.4.b
+		trigger = {
+			any_scope_state = {
+				count >= 2
+			}
+			NOT = {
+				has_variable = owned_by_pan_nationalist_radicals
+			}
+		}
+		default_option = yes
+		custom_tooltip = risorgimento_unifying_stance_set_tt
+		ruler = {
+			exile_character_with_martyrdom = yes
+		}
+		activate_law = law_type:law_parliamentary_republic
+        activate_law = law_type:GovPlus_law_republic # Gov+
+		activate_law = law_type:law_census_voting
+		set_variable = owned_by_pan_nationalist_radicals
+		if = {
+			limit = {
+				has_law = law_type:law_hereditary_bureaucrats
+			}
+			activate_law = law_type:law_appointed_bureaucrats
+		}
+		call_election = {
+			months = 3
+		}
+		add_loyalists = {
+			value = very_large_radicals
+			culture = cu:north_italian
+		}
+		add_loyalists = {
+			value = very_large_radicals
+			culture = cu:south_italian
+		}
+		scope:italian_leader = {
+			trigger_event = { id = italian_unification.6 popup = yes }
+		}
+	}
+	
+	option = {
+		name = italian_unification.4.c
+		trigger = {
+			any_scope_state = {
+				count >= 2
+			}
+			has_variable = owned_by_pan_nationalist_radicals
+		}
+		default_option = yes
+		scope:italian_leader = {
+			trigger_event = { id = italian_unification.5 popup = yes }
+		}
+	}
+}
+
+# Republic of San Marco - fires for Austria
+italian_unification.7 = {
+	type = country_event
+	placement = ROOT
+
+	title = italian_unification.7.t
+	desc = italian_unification.7.d
+	flavor = italian_unification.7.f
+
+	event_image = {
+		video = "unspecific_signed_contract"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/waving_flag.dds"
+
+	duration = 1
+
+	trigger = {
+		#Triggered as part of event chain
+	}
+
+	immediate = {
+		save_scope_as = rsm_revolted_scope
+		random_country = {
+			limit = {	
+				is_secessionist = yes
+				OR = {
+					country_has_primary_culture = cu:north_italian
+					country_has_primary_culture = cu:south_italian
+				}
+			}
+			activate_law = law_type:law_presidential_republic
+            activate_law = law_type:GovPlus_law_republic # Gov+
+			activate_law = law_type:law_oligarchy
+			change_tag = RSM
+			save_scope_as = rsm_scope	
+			capital = {
+				save_scope_as = rsm_capital_scope
+			}
+		}
+		random_diplomatic_play = {
+			limit = {
+				target = {
+					c:RSM ?= this
+				}
+			}
+			add_escalation = 25
+		}
+	}
+
+	option = {
+		name = italian_unification.7.a
+		default_option = yes
+		custom_tooltip = {
+			text = italian_states_choose_sides_tt
+			every_country = {
+				limit = {
+					has_journal_entry = je_risorgimento
+					NOT = {
+						c:RSM ?= this
+					}
+				}
+				trigger_event = { id = italian_unification.8 days = 7 popup = yes }
+			}
+		}
+		custom_tooltip = italian_states_choose_sides_danger_tt
+	}
+
+	option = {
+		name = italian_unification.7.b
+		custom_tooltip = {
+			text = italian_states_choose_sides_tt
+			every_country = {
+				limit = {
+					has_journal_entry = je_risorgimento
+					NOT = {
+						c:RSM ?= this
+					}
+				}
+				trigger_event = { id = italian_unification.8 days = 7 popup = yes }
+			}
+		}
+		custom_tooltip = italian_states_choose_sides_danger_tt
+		play_as = c:RSM
+	}
+}

@@ -1,0 +1,108 @@
+﻿namespace = coffee_with_milk
+
+coffee_with_milk.7 = {
+	type = country_event
+	placement = root
+
+	duration = 3
+
+	#dlc = dlc008
+
+	title = coffee_with_milk.7.t
+	desc = coffee_with_milk.7.d
+	flavor = {
+		first_valid = {
+			triggered_desc = {
+				desc = coffee_with_milk.7.f1
+				trigger = {
+					# OR = { # Gov+
+						# has_law = law_type:law_presidential_republic
+						# has_law = law_type:law_parliamentary_republic
+					# }
+                    has_law = law_type:GovPlus_law_republic # Gov+
+				}
+			}
+			triggered_desc = {
+				desc = coffee_with_milk.7.f2
+				trigger = {
+					# NOR = { # Gov+
+						# has_law = law_type:law_presidential_republic
+						# has_law = law_type:law_parliamentary_republic
+					# }
+                    NOT = {
+                        has_law = law_type:GovPlus_law_republic # Gov+
+                    }
+				}
+			}
+		}
+	}
+	event_image = {
+		video = "southamerica_election"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/southamerica/election"
+
+	icon = "gfx/interface/icons/event_icons/event_election.dds"
+
+	cooldown = { months = normal_modifier_time }
+
+	trigger = {
+		in_election_campaign = yes
+		ig:ig_landowners = {
+			has_party = yes
+		}
+	}
+	
+	immediate = {
+		ig:ig_landowners = {
+			save_scope_as = landowners_scope
+			party = {
+				save_scope_as = republicans_scope
+			}
+		}
+		ordered_scope_state = {
+			limit = {
+				is_capital = no
+				has_building = building_coffee_plantation
+				has_building = building_livestock_ranch
+				is_incorporated = yes
+			}
+			order_by = gdp
+			save_scope_as = milk_state
+		}
+		ordered_scope_state = {
+			limit = {
+				is_capital = no
+				has_building = building_coffee_plantation
+				is_incorporated = yes
+				NOT = {
+					scope:milk_state = this
+				}
+			}
+			order_by = gdp
+			save_scope_as = coffee_state
+		}
+	}
+	
+	option = {
+		name = coffee_with_milk.7.a 
+		default_option = yes
+		scope:republicans_scope = {
+			add_momentum = momentum_very_large
+		}
+	}
+
+	option = {
+		name = coffee_with_milk.7.b
+		trigger = {
+			NOT = {
+				has_modifier = modifier_governors_policy
+			}
+		}
+		highlighted_option = yes
+		scope:republicans_scope = {
+			add_momentum = momentum_medium
+		}
+	}
+}
