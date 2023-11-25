@@ -39,6 +39,7 @@ paris_commune.1 = {
 						provinces = { x906000 }
 					}
 				}
+                set_immune_to_revolutions = yes
 				set_ruling_interest_groups = { ig_intelligentsia ig_trade_unions ig_armed_forces }
 				ig:ig_armed_forces = {
 					set_interest_group_name = ig_national_guard
@@ -192,6 +193,7 @@ paris_commune.1 = {
 				months = 24
 			}
 		}
+        set_variable = { name = PRC_recognition_level value = 0 }
 		random_state = {
 			limit = {
 				owner = {
@@ -207,6 +209,20 @@ paris_commune.1 = {
 			c:PRC = {
 				activate_law = law_type:law_council_republic
 			}
+		}
+        ruler = {
+			save_scope_as = ruler_scope
+		}
+		every_country = {
+			limit = {
+				has_diplomatic_relevance = ROOT
+				country_rank >= rank_value:major_power
+				NOT = { ROOT = THIS }
+			}
+			trigger_event = { id = paris_commune.5 days = 14 }
+		}
+		ROOT = {
+			save_scope_as = france_scope
 		}
 	}
 
@@ -235,6 +251,7 @@ paris_commune.1 = {
 			set_global_variable = { name = paris_commune_progress_drift value = -1 } 
 		}
 		custom_tooltip = commune_progress_start_at_40
+        set_variable = paris_commune_fra_perspective
 	}
 	option = {
 		name = paris_commune.1.b
@@ -260,5 +277,6 @@ paris_commune.1 = {
 			set_global_variable = { name = paris_commune_progress_drift value = 1 } 
 		}
 		custom_tooltip = commune_progress_start_at_60
+        set_variable = paris_commune_prc_perspective
 	}
 }

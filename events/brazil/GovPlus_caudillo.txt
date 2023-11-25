@@ -1,0 +1,167 @@
+﻿namespace = caudillo
+
+# Continuismo
+caudillo.4 = {
+	type = country_event
+	placement = ROOT
+	
+	title = caudillo.4.t
+	desc = caudillo.4.d
+	flavor = caudillo.4.f
+	
+	event_image = {
+		video = "unspecific_military_parade"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/ig_icons/armed_forces.dds"
+	
+	duration = 3
+
+	cooldown = { months = long_modifier_time }
+	
+	trigger = {
+		# triggered by je_caudillo
+		NOT = { has_global_variable = continuismo_start_var }
+		ruler = {
+			interest_group = {
+				is_interest_group_type = ig_armed_forces
+			}
+		}
+		# has_law = law_type:law_presidential_republic # Gov+
+        has_law = law_type:GovPlus_law_republic # Gov+
+		OR = {
+			has_law = law_type:law_autocracy
+			has_law = law_type:law_oligarchy
+		}
+		OR = {
+			ig:ig_armed_forces = {
+				leader = {
+					is_ruler = no
+				}
+			}
+			any_scope_character = {
+				OR = {
+					has_role = general
+					has_role = admiral
+				}
+				interest_group = {
+					is_interest_group_type = ig_armed_forces
+				}
+				is_ruler = no
+			}
+		}
+	}
+
+	immediate = {
+		ig:ig_armed_forces = {
+			save_scope_as = army_scope
+		}
+		ruler = {
+			save_scope_as = ruler_scope
+		}
+		if = {
+			limit = {
+				ig:ig_armed_forces = {
+					leader = {
+						is_ruler = no
+					}
+				}
+			}
+			ig:ig_armed_forces = {
+				leader = {
+					save_scope_as = president_successor_scope
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				any_scope_character = {
+					OR = {
+						has_role = general
+						has_role = admiral
+					}
+					interest_group = {
+						is_interest_group_type = ig_armed_forces
+					}
+					is_ruler = no
+				}
+			}
+			random_scope_character = {
+				limit = {
+					OR = {
+						has_role = general
+						has_role = admiral
+					}
+					interest_group = {
+						is_interest_group_type = ig_armed_forces
+					}
+					is_ruler = no
+				}
+				save_scope_as = president_successor_scope
+			}
+		}
+	}
+	option = {
+		name = caudillo.4.a
+		default_option = yes
+		custom_tooltip = {
+			text = gain_large_caudillo_points
+			change_variable = {
+				name = caudillo_var
+				add = 200
+			}
+		}
+		ig:ig_armed_forces = {
+			add_modifier = {
+				name = continuismo
+				months = normal_modifier_time
+			}
+		}
+		ai_chance = {
+			base = 15
+		}
+	}
+	option = { # his term is over, time to step down
+		name = caudillo.4.b
+		custom_tooltip = {
+			text = retire_ruler
+			ruler = {
+				kill_character = { hidden = yes }
+			}
+		}
+		ig:ig_armed_forces = {
+			add_modifier = {
+				name = no_continuismo
+				months = normal_modifier_time
+			}
+		}
+		custom_tooltip = {
+			text = lose_large_caudillo_points
+			change_variable = {
+				name = caudillo_var
+				add = -200
+			}
+		}
+		ai_chance = {
+			base = 3
+		}
+	}
+	option = { # his successor takes over
+		name = caudillo.4.c
+		scope:president_successor_scope = {
+			set_character_as_ruler = yes
+		}
+		custom_tooltip = {
+			text = gain_caudillo_points
+			change_variable = {
+				name = caudillo_var
+				add = 100
+			}
+		}
+		ai_chance = {
+			base = 7
+		}
+	}
+}

@@ -1,0 +1,93 @@
+﻿namespace = BRZ_vargas
+
+###Vargas
+BRZ_vargas.1 = {
+	type = country_event
+	placement = ROOT
+	
+	title = BRZ_vargas.1.t
+	desc = BRZ_vargas.1.d
+	flavor = BRZ_vargas.1.f
+	
+	event_image = {
+		video = "unspecific_ruler_speaking_to_people"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_protest.dds"
+
+	cooldown = { months = normal_modifier_time }
+	
+	duration = 3
+
+	#dlc = dlc008
+	
+	trigger = {
+		#Fired by JE
+	}
+
+	immediate = {
+		activate_law = law_type:law_autocracy
+		if = {
+			limit = {
+				NOT = {
+					# has_law = law_type:law_presidential_republic # Gov+
+                    has_law = law_type:GovPlus_law_republic # Gov+
+				}
+			}
+			# activate_law = law_type:law_presidential_republic # Gov+
+            activate_law = law_type:GovPlus_law_republic # Gov+
+		}
+		ig:ig_petty_bourgeoisie = {
+			leader = {
+				if = {
+					limit = {
+						NOT = {
+							has_variable = vargas_variable
+						}
+					}
+					set_variable = vargas_variable
+					set_variable = memento_mori_immunity
+				}
+				save_scope_as = vargas_scope
+			}
+			add_modifier = {
+				name = modifier_new_dictatorship_brazil
+				months = short_modifier_time
+				is_decaying = yes
+			}
+		}
+	}
+
+	option = {
+		name = BRZ_vargas.1.a
+		default_option = yes
+		if = {
+			limit = {
+				exists = scope:vargas_scope
+				scope:vargas_scope = {
+					is_character_alive = yes
+				}
+			}
+			scope:vargas_scope = {
+				set_character_as_ruler = yes
+				interest_group = {
+					add_ruling_interest_group = yes
+				}
+			}
+		}
+		else = {
+			ig:ig_petty_bourgeoisie = {
+				leader = {
+					set_character_as_ruler = yes
+				}
+				add_ruling_interest_group = yes
+			}
+		}
+		set_variable = new_republic_start
+		add_journal_entry = {
+			type = je_new_republic
+		}
+	}
+}
